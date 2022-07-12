@@ -5,10 +5,10 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import eu.maxkim.boredombuster.activity.model.Activity
 import eu.maxkim.boredombuster.activity.usecase.DeleteActivity
-import eu.maxkim.boredombuster.model.Result
 import eu.maxkim.boredombuster.activity.usecase.GetRandomActivity
 import eu.maxkim.boredombuster.activity.usecase.IsActivitySaved
 import eu.maxkim.boredombuster.activity.usecase.SaveActivity
+import eu.maxkim.boredombuster.model.Result
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +22,7 @@ class NewActivityViewModel @Inject constructor(
     private val saveActivity: SaveActivity,
     private val deleteActivity: DeleteActivity,
     private val isActivitySaved: IsActivitySaved
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow<NewActivityUiState>(NewActivityUiState.Loading)
     val uiState: StateFlow<NewActivityUiState> = _uiState
@@ -45,8 +45,7 @@ class NewActivityViewModel @Inject constructor(
                 }
                 is Result.Error -> {
                     activityResult.error
-                        .takeUnless { it is CancellationException }
-                        ?.let(NewActivityUiState::Error)
+                        .takeUnless { it is CancellationException }?.let(NewActivityUiState::Error)
                         ?: NewActivityUiState.Loading
                 }
             }
