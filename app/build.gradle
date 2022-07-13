@@ -91,8 +91,10 @@ dependencies {
 
     // Test
     testImplementation "junit:junit:$junit_version"
-    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version"
-    testImplementation "app.cash.turbine:turbine:$turbine_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_test_version" // Testing coroutines
+    testImplementation "app.cash.turbine:turbine:$turbine_version" // Testing Flows emits
+    testImplementation "androidx.arch.core:core-testing:$arch_testing_version" // Testing architecture components
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$mockito_kotlin_version" // Using Mocks in tests
 
     // Android Test
     androidTestImplementation "androidx.test.ext:junit:$ext_junit_version"
